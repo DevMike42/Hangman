@@ -1,0 +1,101 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#header-main {
+  text-align: center;
+}
+
+.container {
+  max-width: 900px;
+}
+
+#game-window {
+  background: lightgray;
+  color: #333;
+  height: 600px;
+  margin: auto;
+  border-radius: 5px;
+}
+
+#directions {
+  display: none;
+}
+
+.word-box {
+  text-align: center;
+  padding: 80px 0;
+  height: 80px;
+}
+
+#game-values {
+  margin: 30px auto;
+  max-width: 80%;
+  text-align: center;
+}
+
+#game-values h4 {
+  margin-bottom: 20px;
+}
+
+#game-values .chosen-letters {
+  margin: auto;
+  width: 90%;
+}
+
+#game-values .chosen-letters .guess-box {
+  height: 60px;
+  width: 60px;
+  background: #fff;
+  display: inline-block;
+  position: relative;
+  border: 2px solid #333;
+} 
+
+#game-values .guess-box h4 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+#game-data {
+  width: 80%;
+  height: 300px;
+  margin: 50px auto;
+  align-items: baseline;
+}
+
+#game-data .game-data-box {
+  height: 200px;
+  width: 40%;
+  border: 2px solid #333;
+  float: left;
+  /* margin: 40px 50px; */
+  margin: 0 20px;
+  position: relative;
+}
+
+#game-data .game-data-box .box-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+#game-data .game-data-box .box-content i {
+  padding: 15px;
+}
+
+#game-data .game-data-box .box-content h3 {
+  padding: 15px;
+}
