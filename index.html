@@ -17,17 +17,63 @@
 
 <body>
 
-  <div class="container">
-
-    <div class="jumbotron text-center">
+  <!-- Header Section -->
+  <div class="jumbotron text-center py-3">
+    <section class="container">
       <h1 class="display-4">Hangman Game</h1>
       <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia aperiam atque placeat repellat
         delectus exercitationem. Quaerat repellat omnis alias ipsum.</p>
       <hr>
-      <a href="#" class="btn btn-info btn-lg">Start</a>
-    </div>
+      <div id="btn-and-alert" class="w-50 m-auto">
+        <a href="#" class="btn btn-info btn-block">Start</a>
+        <div class="alert alert-success mt-3 invisible">
+          test
+        </div>
+      </div>
+    </section>
+  </div>
 
-    <section id="letters" class="m-auto">
+  <!-- Game Values Section -->
+  <section id="game-values" class="container">
+    <div class="row py-3">
+      <div id="word" class=" w-100 text-center">
+        <h2>_ _ _ _ _ </h2>
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col">
+        <h4><strong>Round (of 10)</strong></h4>
+      </div>
+      <div class="col">
+        <h4><strong>Wins</strong></h4>
+      </div>
+      <div class="col">
+        <h4><strong>Losses</strong></h4>
+      </div>
+      <div class="col">
+        <h4><strong>Remaining Guesses</strong></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h4 id="round">1</h4>
+      </div>
+      <div class="col">
+        <h4 id="wins">2</h4>
+      </div>
+      <div class="col">
+        <h4 id="losses">5</h4>
+      </div>
+      <div class="col">
+        <h4 id="guesses">5</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- Keyboard Section -->
+  <section class="container">
+    <div id="letters" class="m-auto">
+      <!-- Row 1 -->
       <div class="row">
         <div class="col-2 text-center m-0 p-1">
           <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
@@ -60,7 +106,7 @@
           </a>
         </div>
       </div>
-
+      <!-- Row 2 -->
       <div class="row">
         <div class="col text-center m-0 p-1">
           <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
@@ -98,7 +144,7 @@
           </a>
         </div>
       </div>
-
+      <!-- Row 3 -->
       <div class="row">
         <div class="col-2 text-center m-0 p-1">
           <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
@@ -131,7 +177,7 @@
           </a>
         </div>
       </div>
-
+      <!-- Row 4 -->
       <div class="row">
         <div class="col text-center m-0 p-1">
           <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
@@ -169,10 +215,7 @@
           </a>
         </div>
       </div>
-
-  </div>
-
-
+    </div>
   </section>
 
 
