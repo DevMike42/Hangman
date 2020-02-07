@@ -29,27 +29,50 @@ let roundCounter = 0;
 // =================================================
 
 
-/* startRound()
+// startRound()
+function startRound() {
 
-  - Reset (speficic) game values for round
-    > Set numOfGuesses
-    > Set chosenWord > Computer choose random word from wordList
-    > Break down chosenWord into chosenWordArr
-    > set numBlanks to length of chosenWordArr
-    > Reset blanksAndSuccesses to empty arr
-    > Reset wrongGuesses to empty arr
-    > Reset correctGuesses to empt att
-    > Run fillBlanks function
-  - Update UI
-    - Hide Start Btn
-    - Update guesses left
-    - Print blanks for word to guess
-    - Clear correct and wrong guesses (change colors)
-*/
+  numOfGuesses = 10;
+  chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
+  console.log(chosenWord);
+  chosenWordArr = chosenWord.split('');
+  numBlanks = chosenWordArr.length;
+
+  blanksAndSuccesses = [];
+  wrongGuesses = [];
+  correctGuesses = [];
+
+  roundCounter++;
+
+
+  fillBlanks();
+
+  $('#wordUI')
+    .html(blanksAndSuccesses.join('&nbsp'))
+    .removeClass('invisible')
+    .addClass('visible')
+
+  $('#round').text(roundCounter);
+  $('#wins').text(winCounter);
+  $('#losses').text(lossCounter);
+  $('#guesses').text(numOfGuesses);
+
+  //   - Update UI
+  //     - Hide Start Btn
+  //     - Update guesses left
+  //     - Print blanks for word to guess
+  //     - Clear correct and wrong guesses (change colors)
+};
+
 
 /* fillBlanks()
   - Loop length of numBlanks and fill blanksAndSuccesses arr with _
 */
+function fillBlanks() {
+  for (let i = 0; i < numBlanks; i++) {
+    blanksAndSuccesses.push('_');
+  }
+};
 
 /* checkLetter(letter)
   Data
@@ -100,19 +123,50 @@ let roundCounter = 0;
     > Show Instructions
 */
 
+// Hides gameBtn
+function hideGameBtn(event) {
+  $(event.target).addClass('invisible');
+}
+
+// Displays gameBtn as Next Btn
+function displayNextBtn() {
+  $('.gameBtn')
+    .removeClass('invisible btn-info')
+    .addClass('visible btn-secondary')
+    .text('Next Round');
+}
+
+
 
 // EVENT LISTENERS
 // =================================================
 
 // Start Button
+$('.gameBtn').on('click', function (event) {
+  // Hides Start Btn
+  if (this.innerHTML === "Start") {
+    roundCounter = 0;
+
+
+    startRound();
+    hideGameBtn(event);
+  }
+
+
   // startRound()
+
+  // Next Round Btn
+  // startRound()
+
+  // Reset Button
+  // resetGame()
+});
 
 // Click letter
+$('.letterKey').on('click', function (event) {
+  console.log(event.target.innerHTML);
+
   // checkLetter()
   // checkRoundStats()
+});
 
-// Next Round Btn
-  // startRound()
-
-// Reset Button
-  // resetGame()

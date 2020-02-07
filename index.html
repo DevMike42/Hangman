@@ -25,7 +25,7 @@
         delectus exercitationem. Quaerat repellat omnis alias ipsum.</p>
       <hr>
       <div id="btn-and-alert" class="w-50 m-auto">
-        <a href="#" class="btn btn-info btn-block">Start</a>
+        <a href="#" class="gameBtn btn btn-info btn-block">Start</a>
         <div class="alert alert-success mt-3 invisible">
           test
         </div>
@@ -36,8 +36,8 @@
   <!-- Game Values Section -->
   <section id="game-values" class="container">
     <div class="row py-3">
-      <div id="word" class=" w-100 text-center">
-        <h2>_ _ _ _ _ </h2>
+      <div class=" w-100 text-center">
+        <h2 id="wordUI" class="invisible">Word</h2>
       </div>
     </div>
     <div class="row pt-3">
@@ -56,16 +56,16 @@
     </div>
     <div class="row">
       <div class="col">
-        <h4 id="round">1</h4>
+        <h4 id="round">_</h4>
       </div>
       <div class="col">
-        <h4 id="wins">2</h4>
+        <h4 id="wins">_</h4>
       </div>
       <div class="col">
-        <h4 id="losses">5</h4>
+        <h4 id="losses">_</h4>
       </div>
       <div class="col">
-        <h4 id="guesses">5</h4>
+        <h4 id="guesses">_</h4>
       </div>
     </div>
   </section>
@@ -76,143 +76,117 @@
       <!-- Row 1 -->
       <div class="row">
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">A</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">A</a>
         </div>
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">B</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">B</a>
         </div>
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">C</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">C</a>
         </div>
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">D</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">D</a>
         </div>
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">E</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">E</a>
         </div>
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">F</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">F</a>
         </div>
       </div>
       <!-- Row 2 -->
       <div class="row">
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">G</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">G</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">H</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">H</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">I</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">I</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">J</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">J</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">K</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">K</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">L</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">L</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">M</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">M</a>
         </div>
       </div>
       <!-- Row 3 -->
       <div class="row">
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">N</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">N</a>
         </div>
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">O</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">O</a>
         </div>
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">P</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">P</a>
         </div>
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">Q</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">Q</a>
         </div>
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">R</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">R</a>
         </div>
         <div class="col-2 text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">S</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">S</a>
         </div>
       </div>
       <!-- Row 4 -->
       <div class="row">
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">T</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">T</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">U</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">U</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">V</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">V</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">W</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">W</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">X</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">X</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">Y</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">Y</a>
         </div>
         <div class="col text-center m-0 p-1">
-          <a href="#" class="btn btn-secondary w-100 p-3 bg-light border rounded border-secondary">
-            <span class="text-secondary">Z</span>
-          </a>
+          <a href="#"
+            class="letterKey btn btn-secondary w-100 p-3 bg-light border rounded border-secondary text-secondary">Z</a>
         </div>
       </div>
     </div>
