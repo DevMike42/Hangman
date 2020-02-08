@@ -57,38 +57,46 @@ function startRound() {
   $('#losses').text(lossCounter);
   $('#guesses').text(numOfGuesses);
 
-  //   - Update UI
-  //     - Hide Start Btn
-  //     - Update guesses left
-  //     - Print blanks for word to guess
-  //     - Clear correct and wrong guesses (change colors)
+  // TODO: Clear button backgrounds and remove disabled classes
 };
 
 
-/* fillBlanks()
-  - Loop length of numBlanks and fill blanksAndSuccesses arr with _
-*/
+// Fills blanks for word to be displayed each round start
 function fillBlanks() {
   for (let i = 0; i < numBlanks; i++) {
     blanksAndSuccesses.push('_');
   }
 };
 
-/* checkLetter(letter)
-  Data
-    - Declare temp letterInWord variable (boolean)
-    - Loop through length of numBlanks
-      - if letter exists in chosenWord > toggle letterInWord to true (use in next if statement)
-    - If letterInWord === true
-      - Loop length of numBlanks again
-        - If chosenword[j] === letter
-          - blankAndSuccesses[j] = letter
-          - push letter to correctGuesses arr
-        - else
-          - push letter to wrongGuesses arr
-          - Decrement numofGuesses
-*/
+function checkLetter(letter, btn) {
+  //     - Declare temp letterInWord variable (boolean)
+  let letterInWord = false;
 
+  for (let i = 0; i < numBlanks; i++) {
+    if (chosenWord[i] === letter) {
+      letterInWord = true;
+    }
+  }
+
+  if (letterInWord) {
+    for (let j = 0; j < numBlanks; j++) {
+      if (chosenWord[j] === letter) {
+        blanksAndSuccesses[j] = letter;
+        correctGuesses.push(letter);
+        correctLetterToggle(btn);
+        // $(btn).text('FFF');
+
+
+      }
+    }
+    console.log(blanksAndSuccesses);
+  } else {
+    wrongGuesses.push(letter);
+    wrongLetterToggle(btn);
+    numOfGuesses--;
+
+  }
+};
 
 /* checkRoundStats()
   Data
@@ -136,6 +144,18 @@ function displayNextBtn() {
     .text('Next Round');
 }
 
+function correctLetterToggle(btn) {
+  $(btn)
+    .removeClass('bg-light text-secondary')
+    .addClass('bg-success text-white disabled');
+}
+
+function wrongLetterToggle(btn) {
+  $(btn)
+    .removeClass('bg-light text-secondary')
+    .addClass('bg-danger text-white disabled');
+}
+
 
 
 // EVENT LISTENERS
@@ -164,7 +184,15 @@ $('.gameBtn').on('click', function (event) {
 
 // Click letter
 $('.letterKey').on('click', function (event) {
-  console.log(event.target.innerHTML);
+
+  // console.log(event.target);
+  let letterGuessed = event.target.innerHTML.toLowerCase();
+
+  let btn = event.target;
+
+
+  checkLetter(letterGuessed, btn);
+
 
   // checkLetter()
   // checkRoundStats()
