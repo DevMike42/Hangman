@@ -21,98 +21,176 @@ let correctGuesses = [];
 // Game Counters
 let winCounter = 0;
 let lossCounter = 0;
-let numOfGuesses = 10;
+let numOfGuesses = 3;
 let roundCounter = 0;
 
 
-// FUNCTIONS
-// =================================================
+// Game Functions
+// ==================================================================================================
 
+// startRound()
+function startRound() {
+  numOfGuesses = 3;
+  chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
+  console.log(chosenWord);
+  chosenWordArr = chosenWord.split('');
+  numBlanks = chosenWordArr.length;
 
-/* startRound()
+  blanksAndSuccesses = [];
+  wrongGuesses = [];
+  correctGuesses = [];
 
-  - Reset (speficic) game values for round
-    > Set numOfGuesses
-    > Set chosenWord > Computer choose random word from wordList
-    > Break down chosenWord into chosenWordArr
-    > set numBlanks to length of chosenWordArr
-    > Reset blanksAndSuccesses to empty arr
-    > Reset wrongGuesses to empty arr
-    > Reset correctGuesses to empt att
-    > Run fillBlanks function
-  - Update UI
-    - Hide Start Btn
-    - Update guesses left
-    - Print blanks for word to guess
-    - Clear correct and wrong guesses (change colors)
-*/
+  roundCounter++;
 
-/* fillBlanks()
-  - Loop length of numBlanks and fill blanksAndSuccesses arr with _
-*/
+  fillBlanks();
+  updateWordUI();
+  updateStatsUI();
+};
 
-/* checkLetter(letter)
-  Data
-    - Declare temp letterInWord variable (boolean)
-    - Loop through length of numBlanks
-      - if letter exists in chosenWord > toggle letterInWord to true (use in next if statement)
-    - If letterInWord === true
-      - Loop length of numBlanks again
-        - If chosenword[j] === letter
-          - blankAndSuccesses[j] = letter
-          - push letter to correctGuesses arr
-        - else
-          - push letter to wrongGuesses arr
-          - Decrement numofGuesses
-*/
+function fillBlanks() {
+  for (let i = 0; i < numBlanks; i++) {
+    blanksAndSuccesses.push('_');
+  }
+};
 
+function checkLetter(letter, btn) {
+  let letterInWord = false;
 
-/* checkRoundStats()
-  Data
-    - Compare lettersInChosenWord and blanksAndSuccesses
-      If match = WIN
-        - Increment winCounter
-        - Update UI
-          > guesses left
-          > wins
-          > Display Bootstrap alert (win)
-        - Check round counter
-          If not = 5
-            > Display Next Round Btn
-      Else (if numOfGuesses = 0) = LOSS
-        - Increment lossCounter
-        - Update UI
-          > guesses left
-          > losses
-          > Display bootstrap alert (loss)
-        - Check round counter
-          If = 5
-            > Display Restart Btn
-*/
+  for (let i = 0; i < numBlanks; i++) {
+    if (chosenWord[i] === letter) {
+      letterInWord = true;
+    }
+  }
 
+  if (letterInWord) {
+    for (let j = 0; j < numBlanks; j++) {
+      if (chosenWord[j] === letter) {
+        blanksAndSuccesses[j] = letter;
+        correctGuesses.push(letter);
+        correctLetterToggle(btn);
+      }
+      updateWordUI();
+    }
+  } else {
+    wrongGuesses.push(letter);
+    wrongLetterToggle(btn);
+    numOfGuesses--;
+    $('#guesses').text(numOfGuesses);
+  }
+};
 
-/* resetGame()
-  - Reset game counters
-  - empty game arrays
-  - Update UI
-    > Clear btn colors
-    > Show Start btn
-    > Show Instructions
-*/
+function checkRoundStats() {
+  if (chosenWordArr.toString() === blanksAndSuccesses.toString()) {
+    winCounter++;
+    //TODO: Show Bootstrap alert (round won)
+    checkForWin();
+  } else if (numOfGuesses === 0) {
+    lossCounter++;
+    // Display chosenWord
+    // TODO: Show Bootstrap alert (round lost)
+    checkForWin();
+  }
+};
 
+function checkForWin() {
+  if (roundCounter === 3) {
+    updateStatsUI();
+    resetKeyboardUI();
+    displayResetBtn();
+    // TODO: Display Bootstrap alert (game over)
+  } else {
+    updateStatsUI();
+    resetKeyboardUI();
+    displayNextBtn();
+  }
+};
+
+function resetGame() {
+  roundCounter = 0;
+  winCounter = 0;
+  lossCounter = 0;
+  numOfGuesses = 0;
+  updateStatsUI();
+  hideGameBtn(event);
+  startRound();
+};
+
+// UI Functions
+// ==================================================================================================
+
+function updateWordUI() {
+  $('#wordUI')
+    .html(blanksAndSuccesses.join('&nbsp'))
+    .removeClass('invisible')
+    .addClass('visible')
+};
+
+function updateStatsUI() {
+  $('#round').text(roundCounter);
+  $('#wins').text(winCounter);
+  $('#losses').text(lossCounter);
+  $('#guesses').text(numOfGuesses);
+};
+
+function resetKeyboardUI() {
+  $('.letterKey').removeClass('bg-danger bg-success text-white disabled').addClass('bg-light text-secondary');
+};
+
+// Hides gameBtn
+function hideGameBtn(event) {
+  $(event.target).addClass('invisible');
+};
+
+// Displays gameBtn as Next Btn
+function displayNextBtn() {
+  $('#gameBtn')
+    .removeClass('invisible btn-info')
+    .addClass('visible btn-secondary')
+    .text('Next Round');
+};
+
+function displayResetBtn() {
+  $('#gameBtn')
+    .removeClass('invisible btn-secondary')
+    .addClass('visible btn-info')
+    .text('Reset');
+};
+
+function correctLetterToggle(btn) {
+  $(btn)
+    .removeClass('bg-light text-secondary')
+    .addClass('bg-success text-white disabled');
+};
+
+function wrongLetterToggle(btn) {
+  $(btn)
+    .removeClass('bg-light text-secondary')
+    .addClass('bg-danger text-white disabled');
+};
 
 // EVENT LISTENERS
 // =================================================
 
-// Start Button
-  // startRound()
+// Game Button
+$('#gameBtn').on('click', function (event) {
+  // Hides Start Btn
+  if (this.innerHTML === "Start") {
+    roundCounter = 0;
+    startRound();
+    hideGameBtn(event);
+  } else if (this.innerHTML === "Next Round") {
+    // roundCounter++;
+    startRound();
+    hideGameBtn(event);
+  } else if (this.innerHTML === "Reset") {
+    resetGame(event);
+  }
+});
 
 // Click letter
-  // checkLetter()
-  // checkRoundStats()
-
-// Next Round Btn
-  // startRound()
-
-// Reset Button
-  // resetGame()
+$('.letterKey').on('click', function (event) {
+  let letterGuessed = event.target.innerHTML.toLowerCase();
+  let btn = event.target;
+  checkLetter(letterGuessed, btn);
+  checkRoundStats();
+});
