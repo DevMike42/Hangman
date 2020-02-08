@@ -4,7 +4,7 @@
 // Tracks start and reset of game
 let isGameRunning = false;
 // Array of words for game
-const wordList = ['nacho', 'ramsees', 'incarnacio'];
+const wordList = ['nacho', 'ramsees'];
 // Current Solution
 let chosenWord = '';
 // Solution broken into an array
@@ -21,18 +21,16 @@ let correctGuesses = [];
 // Game Counters
 let winCounter = 0;
 let lossCounter = 0;
-let numOfGuesses = 10;
+let numOfGuesses = 3;
 let roundCounter = 0;
 
 
-// FUNCTIONS
-// =================================================
-
+// Game Functions
+// ==================================================================================================
 
 // startRound()
 function startRound() {
-
-  numOfGuesses = 10;
+  numOfGuesses = 3;
   chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
   console.log(chosenWord);
   chosenWordArr = chosenWord.split('');
@@ -44,18 +42,11 @@ function startRound() {
 
   roundCounter++;
 
-
   fillBlanks();
-
   updateWordUI();
-
   updateStatsUI();
-
-  // TODO: Clear button backgrounds and remove disabled classes
 };
 
-
-// Fills blanks for word to be displayed each round start
 function fillBlanks() {
   for (let i = 0; i < numBlanks; i++) {
     blanksAndSuccesses.push('_');
@@ -63,7 +54,6 @@ function fillBlanks() {
 };
 
 function checkLetter(letter, btn) {
-  //     - Declare temp letterInWord variable (boolean)
   let letterInWord = false;
 
   for (let i = 0; i < numBlanks; i++) {
@@ -81,7 +71,6 @@ function checkLetter(letter, btn) {
       }
       updateWordUI();
     }
-    console.log(blanksAndSuccesses);
   } else {
     wrongGuesses.push(letter);
     wrongLetterToggle(btn);
@@ -93,54 +82,64 @@ function checkLetter(letter, btn) {
 function checkRoundStats() {
   if (chosenWordArr.toString() === blanksAndSuccesses.toString()) {
     winCounter++;
-    //TODO: Show Bootstrap alert
-    updateStatsUI();
-    resetKeyBoardUI();
-    // TODO: Display next btn
-    displayNextBtn();
+    //TODO: Show Bootstrap alert (round won)
+    checkForWin();
   } else if (numOfGuesses === 0) {
     lossCounter++;
-    // TODO: Show Bootstrap alert
-    updateStatsUI();
-    resetKeyBoardUI();
-    // TODO: Display next btn
-    displayNextBtn();
+    // Display chosenWord
+    // TODO: Show Bootstrap alert (round lost)
+    checkForWin();
   }
-
-
 };
 
-/* resetGame()
-  - Reset game counters
-  - empty game arrays
-  - Update UI
-    > Clear btn colors
-    > Show Start btn
-    > Show Instructions
-*/
+function checkForWin() {
+  if (roundCounter === 3) {
+    updateStatsUI();
+    resetKeyboardUI();
+    displayResetBtn();
+    // TODO: Display Bootstrap alert (game over)
+  } else {
+    updateStatsUI();
+    resetKeyboardUI();
+    displayNextBtn();
+  }
+};
+
+function resetGame() {
+  roundCounter = 0;
+  winCounter = 0;
+  lossCounter = 0;
+  numOfGuesses = 0;
+  updateStatsUI();
+  hideGameBtn(event);
+  startRound();
+};
+
+// UI Functions
+// ==================================================================================================
 
 function updateWordUI() {
   $('#wordUI')
     .html(blanksAndSuccesses.join('&nbsp'))
     .removeClass('invisible')
     .addClass('visible')
-}
+};
 
 function updateStatsUI() {
   $('#round').text(roundCounter);
   $('#wins').text(winCounter);
   $('#losses').text(lossCounter);
   $('#guesses').text(numOfGuesses);
-}
+};
 
-function resetKeyBoardUI() {
+function resetKeyboardUI() {
   $('.letterKey').removeClass('bg-danger bg-success text-white disabled').addClass('bg-light text-secondary');
-}
+};
 
 // Hides gameBtn
 function hideGameBtn(event) {
   $(event.target).addClass('invisible');
-}
+};
 
 // Displays gameBtn as Next Btn
 function displayNextBtn() {
@@ -148,26 +147,31 @@ function displayNextBtn() {
     .removeClass('invisible btn-info')
     .addClass('visible btn-secondary')
     .text('Next Round');
-}
+};
+
+function displayResetBtn() {
+  $('#gameBtn')
+    .removeClass('invisible btn-secondary')
+    .addClass('visible btn-info')
+    .text('Reset');
+};
 
 function correctLetterToggle(btn) {
   $(btn)
     .removeClass('bg-light text-secondary')
     .addClass('bg-success text-white disabled');
-}
+};
 
 function wrongLetterToggle(btn) {
   $(btn)
     .removeClass('bg-light text-secondary')
     .addClass('bg-danger text-white disabled');
-}
-
-
+};
 
 // EVENT LISTENERS
 // =================================================
 
-// Start Button
+// Game Button
 $('#gameBtn').on('click', function (event) {
   // Hides Start Btn
   if (this.innerHTML === "Start") {
@@ -178,33 +182,15 @@ $('#gameBtn').on('click', function (event) {
     // roundCounter++;
     startRound();
     hideGameBtn(event);
+  } else if (this.innerHTML === "Reset") {
+    resetGame(event);
   }
-
-
-
-  // startRound()
-
-  // Next Round Btn
-  // startRound()
-
-  // Reset Button
-  // resetGame()
 });
 
 // Click letter
 $('.letterKey').on('click', function (event) {
-
-  // console.log(event.target);
   let letterGuessed = event.target.innerHTML.toLowerCase();
-
   let btn = event.target;
-
-
   checkLetter(letterGuessed, btn);
-
   checkRoundStats();
-
-  // checkLetter()
-  // checkRoundStats()
 });
-
